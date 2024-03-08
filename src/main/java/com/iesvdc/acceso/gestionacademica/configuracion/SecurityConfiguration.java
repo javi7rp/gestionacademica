@@ -22,48 +22,28 @@ public class SecurityConfiguration {
 
     @Autowired
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication()
-            .dataSource(dataSource)
-            .usersByUsernameQuery("select username, password, enabled "
-                                    + "from usuario "
-                                    + "where username = ?")
-            .authoritiesByUsernameQuery("select username, rol.nombre  "
-                                    + "from usuario_roles, usuario, rol "
-                                    + "where usuario.id=usuario_roles.usuario_id and "
-                                    + "usuario_roles.roles_id = rol.id and username = ?");
+            auth.jdbcAuthentication()
+                            .dataSource(dataSource)
+                            .usersByUsernameQuery("SELECT username, password, 1 AS enabled FROM usuario WHERE username = ?")
+                            .authoritiesByUsernameQuery("SELECT username, authority FROM usuario WHERE username = ?");
     }
 
     @Bean
-    public PasswordEncoder encoder() {
+    public PasswordEncoder encoder(){
         return new BCryptPasswordEncoder();
     }
-         
 
     @Bean
-    public SecurityFilterChain filter(HttpSecurity http) throws Exception {
-                
-        // Con Spring Security 6.2 y 7: usando Lambda DSL
-
-        return http
-            .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/webjars/**", "/img/**", "/js/**", "/register/**", "/ayuda/**", "/login", "/denegado")
-                .permitAll() 
-                .requestMatchers("/alumnos/**").hasAuthority("alumno")
-                .requestMatchers("/profesores/**").hasAuthority("profesor")
-                .requestMatchers("/gestores/**").hasAuthority("gestor")
-            ).exceptionHandling((exception)-> exception
-                .accessDeniedPage("/denegado")
-            ).formLogin((formLogin) -> formLogin
-                .permitAll()
-            ).rememberMe(
-                Customizer.withDefaults()
-            ).logout((logout) -> logout
-                .invalidateHttpSession(true)
-                .logoutSuccessUrl("/")
-                .permitAll()                                
-            ).csrf((protection) -> protection
-                .disable()
-            ).build();
+    public SecurityFilterChain filter(HttpSecurity http) throws Exception{
+        return http.authorizeHttpRequests((requests) -> requests
+        .requestMatchers("/js/**", "/register/**", "/ayuda/**", "/login").permitAll()
+        .requestMatchers("/alumno/add", "/profesor/add", "/asignatura/add").hasAuthority("GESTOR")
+        .anyRequest().permitAll())
+        .formLogin((formLogin) -> formLogin.permitAll())
+        .rememberMe(Customizer.withDefaults())
+        .logout((logout) -> logout
+        .invalidateHttpSession(true).logoutSuccessUrl("/").deleteCookies("JSESSIONID").permitAll())
+        .build();
     }
 
 }
