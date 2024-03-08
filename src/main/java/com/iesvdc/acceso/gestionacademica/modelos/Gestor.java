@@ -20,4 +20,7 @@ public class Gestor {
     private String usuario;
     @Column(length = 100)
     private String password;
+
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'GESTOR'")
+    private String authority;
 }

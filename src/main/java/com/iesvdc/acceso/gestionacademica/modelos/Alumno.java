@@ -7,8 +7,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,17 +19,18 @@ public class Alumno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 25)
-    private String username; //usuario
+    private String username;
     @Column(length = 100)
-    private String password; //password
+    private String password; 
     @Column(length = 50)
-    private String nombre; //nombre
-    private String apellido; //apellido
-    private boolean enabled; 
+    private String nombre; 
+    private String apellido; 
     @Column(length = 100)
-    private String email; //email
+    private String email; 
+
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'ALUMNO'")
+    private String authority;
 
     @OneToMany
-    @JoinColumn(name = "usuario_id")
-    List<Telefono> telefonos;
+    private List<Asignatura> asignaturas;
 }

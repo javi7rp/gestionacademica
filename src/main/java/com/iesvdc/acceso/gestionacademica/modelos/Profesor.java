@@ -7,7 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,18 +19,19 @@ public class Profesor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 25)
-    private String username; //usuario
+    private String username; 
     @Column(length = 100)
-    private String password; //password
+    private String password;
     @Column(length = 50)
-    private String nombre; //nombre
-    private String apellido; //apellido
+    private String nombre; 
+    private String apellido; 
     @Column(length = 100)
-    private String email; //email
+    private String email; 
 
-    @ManyToMany
-    private List<Rol> roles;
-    @ManyToMany
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'PROFESOR'")
+    private String authority;
+
+    @OneToMany
     private List<Asignatura> asignaturas;
 
 }
