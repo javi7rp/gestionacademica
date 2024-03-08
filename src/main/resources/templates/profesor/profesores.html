@@ -18,7 +18,7 @@
           <td>Apellido</td>
           <td>Email</td>
           <td>Username</td>
-          <td>Acciones</td>
+          <td sec:authorize="hasAuthority('GESTOR')">Acciones</td>
         </tr>
       </thead>
       <tbody>
@@ -27,10 +27,12 @@
           <td th:text="${profesor.apellido}"></td>
           <td th:text="${profesor.email}"></td>
           <td th:text="${profesor.username}"></td>
-          <td>
-              <a class="btn btn-success" th:href="|/profesores/edit/${profesor.id}|">Editar</a>
-              <a class="btn btn-danger" th:href="|/profesores/delete/${profesor.id}|">Borrar</a>
-          </td>
+          <td sec:authorize="hasAuthority('GESTOR')">
+            <a class="btn btn-success" th:href="|/profesor/edit/${profesor.id}|">Editar</a>
+            <a class="btn btn-primary" th:href="|/profesor/impartir/${profesor.id}|">Impartir Asignatura</a>
+            <a class="btn btn-primary" th:href="|/profesor/imparte/${profesor.id}|">Asignaturas Impartidas</a>
+            <a class="btn btn-danger" th:href="|/profesor/delete/${profesor.id}|">Borrar</a>
+        </td>
         </tr>
       </tbody>
     </table>
