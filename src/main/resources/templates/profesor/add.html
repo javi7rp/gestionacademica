@@ -13,7 +13,7 @@
     <div class="container">
         <h3>Añadir profesor</h3>
 
-        <form th:action="@{/profesores/add}" th:object="${profesor}" method="post">
+        <form th:action="@{/profesor/add}" th:object="${profesor}" method="post">
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
@@ -44,28 +44,8 @@
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
-                        <label class="form-label">Roles:</label>
-                        <select th:field="*{roles}" multiple="multiple" class="form-select">
-                            <option th:each="rol : ${roles}" th:value="${rol.id}" th:text="${rol.nombre}"></option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="border">
-                <div class="row g-3 m-2">
-                    <div class="col-md-6">
-                        <label class="form-label">Asignaturas:</label>
-                        <select th:field="*{asignaturas}" multiple="multiple" class="form-select">
-                            <option th:each="asignatura : ${asignaturas}" th:value="${asignatura.id}" th:text="${asignatura.nombre}"></option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div class="border">
-                <div class="row g-3 m-2">
-                    <div class="col-md-6">
                         <button type="submit" class="btn btn-primary">Guardar</button>
-                        <a href="/profesores" class="btn btn-danger">Cancelar</a>
+                        <a href="/profesor" class="btn btn-danger">Cancelar</a>
                     </div>
                 </div>
             </div>

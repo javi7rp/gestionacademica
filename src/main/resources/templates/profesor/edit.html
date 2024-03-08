@@ -13,7 +13,7 @@
     <div class="container">
         <h3>Editar profesor:</h3>
 
-        <form th:action="|/profesores/edit/${profesor.id}|" th:object="${profesor}" method="post">
+        <form th:action="|/profesor/edit/${profesor.id}|" th:object="${profesor}" method="post">
             <input hidden th:field="${profesor.id}" />
             <div class="border">
                 <div class="row g-3 m-2">
@@ -42,7 +42,7 @@
                         <input type="text" th:field="*{username}" class="form-control" />
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Contraseña:</label> 
+                        <label class="form-label">Contraseña:</label>
                         <input type="password" th:field="*{password}" class="form-control" />
                     </div>
                 </div>
@@ -50,30 +50,8 @@
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
-                        <label class="form-label">Roles:</label>
-                        <ul>
-                            <li th:each="rol : ${profesor.roles}">
-                                <input th:field="*{roles[__${rol.index}__].id}" type="hidden" />
-                                <input class="form-control" th:field="*{roles[__${rol.index}__].nombre}" />
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Asignaturas:</label>
-                        <ul>
-                            <li th:each="asignatura : ${profesor.asignaturas}">
-                                <input th:field="*{asignaturas[__${asignatura.index}__].id}" type="hidden" />
-                                <input class="form-control" th:field="*{asignaturas[__${asignatura.index}__].nombre}" />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="border">
-                <div class="row g-3 m-2">
-                    <div class="col-md-6">
                         <button type="submit" class="btn btn-primary">Actualizar profesor</button>
-                        <a href="/profesores" class="btn btn-danger">Cancelar cambios</a>
+                        <a href="/profesor" class="btn btn-danger">Cancelar cambios</a>
                     </div>
                 </div>
         </form>

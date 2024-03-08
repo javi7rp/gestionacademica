@@ -13,7 +13,7 @@
     <div class="container">
         <h3>Eliminar profesor</h3>
 
-        <form th:action="|/profesores/delete/${profesor.id}|" th:object="${profesor}" method="post">
+        <form th:action="|/profesor/delete/${profesor.id}|" th:object="${profesor}" method="post">
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
@@ -40,37 +40,13 @@
                         <label class="form-label">Nombre de usuario: </label>
                         <input type="text" th:field="*{username}" class="form-control" disabled/>
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Contraseña:</label> 
-                        <input type="password" th:field="*{password}" class="form-control" disabled/>
-                    </div>
-                </div>
-            </div>
-            <div class="border">
-                <div class="row g-3 m-2">
-                    <div class="col-md-6">
-                        <label class="form-label">Roles:</label>
-                        <ul>
-                            <li th:each="rol : ${profesor.roles}" th:text="${rol.nombre}"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="border">
-                <div class="row g-3 m-2">
-                    <div class="col-md-6">
-                        <label class="form-label">Asignaturas:</label>
-                        <ul>
-                            <li th:each="asignatura : ${profesor.asignaturas}" th:text="${asignatura.nombre}"></li>
-                        </ul>
-                    </div>
                 </div>
             </div>
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-danger">Eliminar</button>
-                        <a href="/profesores" class="btn btn-primary">Cancelar</a>
+                        <a href="/profesor" class="btn btn-primary">Cancelar</a>
                     </div>
                 </div>
             </div>
