@@ -18,7 +18,7 @@
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
-                        <p> Selecciona la asignatura en la que quieras matricular al alumno <span th:text="${alumno.nombre + ' ' + alumno.apellidos}"></span></span></p>
+                        <p> Selecciona la asignatura en la que quieras matricular al alumno <span th:text="${alumno.nombre + ' ' + alumno.apellido}"></span></span></p>
                         <select th:field="*{asignaturaId}">
                             <option th:each="asignatura: ${asignaturas}" th:value="${asignatura.id}" th:text="${asignatura.nombre}">Opcion 1</option>
                         </select>

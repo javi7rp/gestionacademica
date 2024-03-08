@@ -22,7 +22,7 @@
             <tbody>
                 <tr th:each="asignatura, index : ${asignaturas}">
                     <td th:text="${profesores[index.index].nombre}"></td>
-                    <td th:text="${profesores[index.index].apellidos}"></td>
+                    <td th:text="${profesores[index.index].apellido}"></td>
                     <td th:text="${asignatura.nombre}"></td>
                 </tr>
             </tbody>

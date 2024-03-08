@@ -1,5 +1,6 @@
 package com.iesvdc.acceso.gestionacademica.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.iesvdc.acceso.gestionacademica.modelos.Alumno;
 import com.iesvdc.acceso.gestionacademica.modelos.Asignatura;
 import com.iesvdc.acceso.gestionacademica.modelos.Matricula;
+import com.iesvdc.acceso.gestionacademica.modelos.Profesor;
 import com.iesvdc.acceso.gestionacademica.modelos.Usuario;
 import com.iesvdc.acceso.gestionacademica.repos.RepoAlumno;
 import com.iesvdc.acceso.gestionacademica.repos.RepoAsignatura;
@@ -225,6 +227,25 @@ public class ControllerAlumno {
         }else{
             return "error";
         }
+    }
+
+    @GetMapping("/profesores")
+    public String profesoresAsignados(Model modelo){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String nombreAlumnoLogueado = authentication.getName();
+
+        Alumno alumnoMatriculado = repoAlumno.findByUsername(nombreAlumnoLogueado);
+        List<Asignatura> asignaturasMatriculadas = alumnoMatriculado.getAsignaturas();
+        List<Profesor> profesoresAsignados = new ArrayList<>();
+
+        for(int i = 0; i < asignaturasMatriculadas.size(); i++){
+            profesoresAsignados.add(asignaturasMatriculadas.get(i).getProfesor());
+        }
+
+        modelo.addAttribute("alumno", alumnoMatriculado);
+        modelo.addAttribute("asignaturas", asignaturasMatriculadas);
+        modelo.addAttribute("profesores", profesoresAsignados);
+        return "alumno/profesores";
     }
 
 }

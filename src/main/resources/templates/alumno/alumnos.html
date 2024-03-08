@@ -7,9 +7,9 @@
 </head>
 
 <body>
-  
-    <div th:replace="~{fragments/general.html :: navigation}"></div>
-    <div class="container">
+
+  <div th:replace="~{fragments/general.html :: navigation}"></div>
+  <div class="container">
     <h3>Lista de Alumnos</h3>
     <table class="table table-striped">
       <thead>
@@ -30,8 +30,10 @@
           <td th:text="${alumno.username}"></td>
           <td th:text="${alumno.telefono}"></td>
           <td>
-              <a class="btn btn-success" th:href="|/alumno/edit/${alumno.id}|">Editar</a>
-              <a class="btn btn-danger" th:href="|/alumno/delete/${alumno.id}|">Borrar</a>
+            <a class="btn btn-success" th:href="|/alumno/edit/${alumno.id}|">Editar</a>
+            <a class="btn btn-primary" th:href="|/alumno/matricular/${alumno.id}|">Matricular Asignatura</a>
+            <a class="btn btn-primary" th:href="|/alumno/matriculas/${alumno.id}|">Asignaturas Matriculadas</a>
+            <a class="btn btn-danger" th:href="|/alumno/delete/${alumno.id}|">Borrar</a>
           </td>
         </tr>
       </tbody>
