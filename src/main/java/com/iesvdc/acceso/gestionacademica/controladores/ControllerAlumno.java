@@ -28,7 +28,7 @@ import com.iesvdc.acceso.gestionacademica.repos.RepoAsignatura;
 import com.iesvdc.acceso.gestionacademica.repos.RepoUsuario;
 
 @Controller
-@RequestMapping("/alumnos")
+@RequestMapping("/alumno")
 public class ControllerAlumno {
 
     @Autowired
@@ -61,7 +61,7 @@ public class ControllerAlumno {
     @GetMapping("/add")
     public String addAlumnoGet(Model modelo) {
         modelo.addAttribute("alumno", new Alumno());
-        return "alumnos/add";
+        return "alumno/add";
     }
 
     /**

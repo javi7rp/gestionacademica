@@ -17,7 +17,7 @@ public class Gestor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(length = 25)
-    private String usuario;
+    private String username;
     @Column(length = 100)
     private String password;
 
