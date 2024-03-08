@@ -32,7 +32,8 @@
                                     Alumnos
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
+                                    <li sec:authorize="hasAuthority('PROFESOR')"><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
                                     <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/alumno/add">Añadir Alumno</a></li>
                                 </ul>
                                 
@@ -43,8 +44,9 @@
                                     Profesores
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a id="menu_modulo" class="dropdown-item" href="/profesores">Listado Profesores</a></li>
-                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/profesor/add">Añadir Profesores</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_modulo" class="dropdown-item" href="/profesores">Listado Profesores</a></li>
+                                    <li sec:authorize="hasAuthority('ALUMNO')"><a id="menu_modulo" class="dropdown-item" href="alumno/profesores">Listado Profesores</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/profesores/add">Añadir Profesores</a></li>
                                 </ul>
                             </li>
                             <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
@@ -56,7 +58,7 @@
                                     <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_modulo" class="dropdown-item" href="/asignaturas">Listado Asignaturas</a></li>
                                     <li sec:authorize="hasAuthority('PROFESOR')"><a id="menu_modulo" class="dropdown-item" href="/profesor/imparte/0">Listado Asignaturas</a></li>
                                     <li sec:authorize="hasAuthority('ALUMNO')"><a id="menu_modulo" class="dropdown-item" href="/alumno/matriculas/0">Listado Asignaturas</a></li>
-                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/asignatura/add">Añadir Asignaturas</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/asignaturas/add">Añadir Asignaturas</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">
