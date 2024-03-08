@@ -25,6 +25,8 @@ public class Alumno {
     @Column(length = 50)
     private String nombre; 
     private String apellido; 
+    @Column(length = 15)
+    private String telefono;
     @Column(length = 100)
     private String email; 
 
