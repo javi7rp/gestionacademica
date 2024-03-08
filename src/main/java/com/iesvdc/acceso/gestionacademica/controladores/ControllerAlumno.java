@@ -25,9 +25,6 @@ public class ControllerAlumno {
     @Autowired
     private RepoAlumno repoAlumno;
 
-    @Autowired
-    private RepoTelefono repoTelefono;
-
     /**
      * Devuelve la lista de alumnos
      */
