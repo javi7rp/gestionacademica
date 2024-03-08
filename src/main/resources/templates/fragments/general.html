@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head th:fragment="headerfiles">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div th:fragment="navigation">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Gestion Academica</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Inicio </a>
+                            </li>
+                            <li sec:authorize="isAuthenticated() and !hasAuthority('ALUMNO')" class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Alumnos
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/alumnos">Listado Alumnos</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/alumno/add">Añadir Alumno</a></li>
+                                </ul>
+                                
+                            </li>
+                            <li sec:authorize="isAuthenticated() and !hasAuthority('PROFESOR')" class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Profesores
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a id="menu_modulo" class="dropdown-item" href="/profesores">Listado Profesores</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/profesor/add">Añadir Profesores</a></li>
+                                </ul>
+                            </li>
+                            <li sec:authorize="isAuthenticated()" class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Asignaturas
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_modulo" class="dropdown-item" href="/asignaturas">Listado Asignaturas</a></li>
+                                    <li sec:authorize="hasAuthority('PROFESOR')"><a id="menu_modulo" class="dropdown-item" href="/profesor/imparte/0">Listado Asignaturas</a></li>
+                                    <li sec:authorize="hasAuthority('ALUMNO')"><a id="menu_modulo" class="dropdown-item" href="/alumno/matriculas/0">Listado Asignaturas</a></li>
+                                    <li sec:authorize="hasAuthority('GESTOR')"><a id="menu_enseñanza" class="dropdown-item" href="/asignatura/add">Añadir Asignaturas</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/ayuda">Ayuda </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/acerca">Sobre esta Web </a>
+                            </li>
+                            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                                <a class="nav-link" href="/login">Iniciar Sesion</a>
+                            </li>
+                            <li sec:authorize="isAuthenticated()" class="nav-item">
+                                <a class="nav-link" href="/logout">Desconexión </a>
+                            </li>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div th:fragment="footer">
+            <footer>
+                <div class="text-center">                    
+                    <hr/>
+                    <p>Entró en el sistema como: <span th:text="${#authentication.name}"></span></p>
+                    <p><span class="text-center">Ⓒ 2024. IES Virgen del Carmen. CFGS Desarrollo Multiplataforma.</span></p>
+                    <hr/>
+                </div>
+                <script src="/webjars/jquery/jquery.min.js"></script>
+                <script src="/webjars/popper.js/umd/popper.min.js"></script>
+                <script src="/webjars/bootstrap/js/bootstrap.js"></script>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>
