@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-  <title>Gestión Academica: Asignaturas Matriculadas</title>
+  <title>Gestion Academica: Gestión De Profesores</title>
   <th:block th:replace="~{fragments/general.html :: headerfiles}"></th:block>
 </head>
 
@@ -10,20 +10,20 @@
   
     <div th:replace="~{fragments/general.html :: navigation}"> </div>
     <div class="container">
-        <h3>Asignaturas Matriculadas Del Alumno <span th:text="${alumno.nombre + ' ' + alumno.apellidos}"></span></h3>
+        <h3>Profesores Que Imparten Asignaturas Al Alumno <span th:text="${alumno.nombre + ' ' + alumno.apellidos}"></span></h3>
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <td>Nombre</td>
-                    <td>Curso</td>
-                    <td>Ciclo</td>
+                <td>Nombre</td>
+                <td>Apellidos</td>
+                <td>Asignatura</td>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="asignatura: ${asignaturas}">
+                <tr th:each="asignatura, index : ${asignaturas}">
+                    <td th:text="${profesores[index.index].nombre}"></td>
+                    <td th:text="${profesores[index.index].apellidos}"></td>
                     <td th:text="${asignatura.nombre}"></td>
-                    <td th:text="${asignatura.curso}"></td>
-                    <td th:text="${asignatura.ciclo}"></td>
                 </tr>
             </tbody>
         </table>
