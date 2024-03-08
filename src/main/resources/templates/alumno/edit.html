@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Gestión de Alumnos: Editar un alumno</title>
+    <th:block th:replace="~{fragmentos/general.html :: headerfiles}"></th:block>
+</head>
+
+<body>
+
+    <div th:replace="~{fragmentos/general.html :: navigation}"> </div>
+
+    <div class="container">
+        <h3>Editar alumno:</h3>
+
+        <form th:action="|/alumnos/edit/${alumno.id}|" th:object="${alumno}" method="post">
+            <input hidden th:field="${alumno.id}" />
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre: </label>
+                        <input type="text" th:field="*{nombre}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Apellido: </label>
+                        <input type="text" th:field="*{apellido}" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Email: </label>
+                        <input type="email" th:field="*{email}" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Nombre de usuario: </label>
+                        <input type="text" th:field="*{username}" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Contraseña:</label> 
+                        <input type="password" th:field="*{password}" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Teléfonos:</label>
+                        <ul>
+                            <li th:each="telefono : ${alumno.telefonos}">
+                                <input th:field="*{telefonos[__${telefono.index}__].id}" type="hidden" />
+                                <input class="form-control" th:field="*{telefonos[__${telefono.index}__].codigoPais}" />
+                                <input class="form-control" th:field="*{telefonos[__${telefono.index}__].numero}" />
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border">
+                <div class="row g-3 m-2">
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Actualizar alumno</button>
+                        <a href="/alumnos" class="btn btn-danger">Cancelar cambios</a>
+                    </div>
+                </div>
+        </form>
+
+        <div th:replace="~{fragmentos/general.html :: footer}"></div>
+
+    </div>
+</body>
+
+</html>
