@@ -116,7 +116,7 @@ public class ControllerAlumno {
         Optional<Alumno> oAlumno = repoAlumno.findById(id);
         if (oAlumno.isPresent()) {
             modelo.addAttribute("alumno", oAlumno.get());
-            return "alumnos/edit";
+            return "alumno/edit";
         } else {
             modelo.addAttribute("mensaje", "El alumno consultado no existe.");
             return "error";

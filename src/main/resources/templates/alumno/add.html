@@ -13,7 +13,7 @@
     <div class="container">
         <h3>Añadir alumno</h3>
 
-        <form th:action="@{/alumnos/add}" th:object="${alumno}" method="post">
+        <form th:action="@{/alumno/add}" th:object="${alumno}" method="post">
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
@@ -44,10 +44,8 @@
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
-                        <label class="form-label">Teléfonos:</label>
-                        <select th:field="*{telefonos}" multiple="multiple" class="form-select">
-                            <option th:each="telefono : ${telefonos}" th:value="${telefono.numero}" th:text="${telefono.numero}"></option>
-                        </select>
+                        <label class="form-label">Telefono: <input type="text" th:field="*{telefono}"
+                            class="form-control" required/></label>
                     </div>
                 </div>
             </div>
@@ -55,7 +53,7 @@
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-primary">Guardar</button>
-                        <a href="/alumnos" class="btn btn-danger">Cancelar</a>
+                        <a href="/alumno" class="btn btn-danger">Cancelar</a>
                     </div>
                 </div>
             </div>

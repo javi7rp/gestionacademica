@@ -13,7 +13,7 @@
     <div class="container">
         <h3>Eliminar alumno</h3>
 
-        <form th:action="|/alumnos/delete/${alumno.id}|" th:object="${alumno}" method="post">
+        <form th:action="|/alumno/delete/${alumno.id}|" th:object="${alumno}" method="post">
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
@@ -49,10 +49,8 @@
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
-                        <label class="form-label">Teléfonos:</label>
-                        <ul>
-                            <li th:each="telefono : ${alumno.telefonos}" th:text="${telefono.numero}"></li>
-                        </ul>
+                        <label class="form-label">Telefono: </label>
+                            <input type="text" th:field="*{telefono}" class="form-control" disabled />
                     </div>
                 </div>
             </div>
@@ -60,7 +58,7 @@
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-danger">Eliminar</button>
-                        <a href="/alumnos" class="btn btn-primary">Cancelar</a>
+                        <a href="/alumno" class="btn btn-primary">Cancelar</a>
                     </div>
                 </div>
             </div>

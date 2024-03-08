@@ -13,7 +13,7 @@
     <div class="container">
         <h3>Editar alumno:</h3>
 
-        <form th:action="|/alumnos/edit/${alumno.id}|" th:object="${alumno}" method="post">
+        <form th:action="|/alumno/edit/${alumno.id}|" th:object="${alumno}" method="post">
             <input hidden th:field="${alumno.id}" />
             <div class="border">
                 <div class="row g-3 m-2">
@@ -50,14 +50,8 @@
             <div class="border">
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
-                        <label class="form-label">Teléfonos:</label>
-                        <ul>
-                            <li th:each="telefono : ${alumno.telefonos}">
-                                <input th:field="*{telefonos[__${telefono.index}__].id}" type="hidden" />
-                                <input class="form-control" th:field="*{telefonos[__${telefono.index}__].codigoPais}" />
-                                <input class="form-control" th:field="*{telefonos[__${telefono.index}__].numero}" />
-                            </li>
-                        </ul>
+                        <label class="form-label">Telefono: <input type="text" th:field="*{telefono}"
+                            class="form-control" required/></label>
                     </div>
                 </div>
             </div>
@@ -65,7 +59,7 @@
                 <div class="row g-3 m-2">
                     <div class="col-md-6">
                         <button type="submit" class="btn btn-primary">Actualizar alumno</button>
-                        <a href="/alumnos" class="btn btn-danger">Cancelar cambios</a>
+                        <a href="/alumno" class="btn btn-danger">Cancelar cambios</a>
                     </div>
                 </div>
         </form>
