@@ -510,3 +510,5 @@ INSERT INTO `usuario` (`id`, `username`, `password`, `authority`, `alumno_id`) V
 INSERT INTO `usuario` (`id`, `username`, `password`, `authority`, `profesor_id`) VALUES (2, 'grego', '$2a$10$.nlNNZl4VJVbiJUxLtOd5e8VKE/jv7EyBXqCSKVYSKEu.T4WT5Z7e', 'PROFESOR', 1); 
 INSERT INTO `usuario` (`id`, `username`, `password`, `authority`, `gestor_id`) VALUES (3, 'gestor', '$2a$10$.nlNNZl4VJVbiJUxLtOd5e8VKE/jv7EyBXqCSKVYSKEu.T4WT5Z7e', 'GESTOR', 1); 
 ```
+
+y ya podremos hacer login en nuestra pagina con los datos introducidos en el import
